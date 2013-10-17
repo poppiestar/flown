@@ -9,5 +9,8 @@ Flown.Square = {
         this.y = y;
 
         return this;
+    },
+    equals: function(square) {
+        return this.x === square.x && this.y == square.y;
     }
 };
