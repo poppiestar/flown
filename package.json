@@ -1,0 +1,23 @@
+{
+  "name": "flown",
+  "version": "0.0.0",
+  "description": "A web-app puzzle game.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/poppiestar/flown.git"
+  },
+  "keywords": [
+    "game",
+    "webapp",
+    "puzzle"
+  ],
+  "author": "Drew Miller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/poppiestar/flown/issues"
+  }
+}
