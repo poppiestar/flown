@@ -4,7 +4,7 @@
   "description": "A web-app puzzle game.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,8 @@
     "url": "https://github.com/poppiestar/flown/issues"
   },
   "devDependencies": {
-    "mocha": "~1.13.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
-    "grunt-mocha-test": "~0.7.0",
     "grunt-contrib-watch": "~0.5.3"
   }
 }
