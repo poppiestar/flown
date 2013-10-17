@@ -10,6 +10,10 @@ Flown.Path = {
 
     get: function() {
         return this._path;
+    },
+
+    add: function( square ) {
+        this._path.push(square);
     }
 
 };

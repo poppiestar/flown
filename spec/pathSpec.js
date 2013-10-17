@@ -38,4 +38,24 @@ describe('Path', function() {
 
     });
 
+    describe('adding a square to a path', function() {
+
+        it('should have an add function', function() {
+            var path = Flown.Path.create();
+
+            expect(path.add).toBeDefined();
+            expect(typeof path.add).toBe('function');
+        });
+
+        it('should add a square to the path', function() {
+            var square = Flown.Square.create(5, 10),
+                path = Flown.Path.create();
+
+            path.add(square);
+
+            expect(path.get()).toEqual([square]);
+        });
+
+    });
+
 });
