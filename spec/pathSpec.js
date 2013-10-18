@@ -21,6 +21,23 @@ describe('Path', function() {
 
     });
 
+    describe('initialising a path', function() {
+
+        it('should have an init function', function() {
+            expect(Flown.Path.init).toBeDefined();
+            expect(typeof Flown.Path.init).toBe('function');
+        });        
+
+        it('should initialise a Path object', function() {
+            var path = Flown.Path.create();
+
+            path.init();
+
+            expect(path.get()).toEqual([]);
+        });
+
+    });
+
     describe('getting path contents', function() {
 
         it('should have a get function', function() {
