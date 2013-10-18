@@ -1,19 +1,19 @@
 
 describe('Board', function() {
 
-    it('should be an object', function() {
+    it('is an object', function() {
         expect(Flown.Board).toBeDefined();
         expect(typeof Flown.Board).toBe('object')
     });
 
     describe('creating a board', function() {
 
-        it('should have a create function', function() {
+        it('has a create function', function() {
             expect(Flown.Board.create).toBeDefined();
             expect(typeof Flown.Board.create).toBe('function');
         });
 
-        it('should create a new Board object', function() {
+        it('creates a new Board object', function() {
             var board = Flown.Board.create();
 
             expect(board).toBeDefined();
@@ -23,12 +23,12 @@ describe('Board', function() {
 
     describe('initialising a board', function() {
 
-        it('should have an init function', function() {
+        it('has an initialisation function', function() {
             expect(Flown.Board.init).toBeDefined();
             expect(typeof Flown.Board.init).toBe('function');
         });
 
-        it('should initialise a Board object', function() {
+        it('sets the initial values of the Board object', function() {
             var board = Flown.Board.create();
 
             expect(board.getAll()).toEqual({});
@@ -44,12 +44,12 @@ describe('Board', function() {
             board = Flown.Board.create();
         });
 
-        it('should have an add path function', function() {
+        it('has an add path function', function() {
             expect(board.add).toBeDefined();
             expect(typeof Flown.Board.add).toBe('function');
         });
 
-        it('should add the path to the board', function() {
+        it('adds a path to the board', function() {
             var path = Flown.Path.create();
 
             path.add(Flown.Square.create(5, 10));
@@ -72,12 +72,12 @@ describe('Board', function() {
             board.add('green', path);
         });
 
-        it('should have a get path function', function() {
+        it('has a get path function', function() {
             expect(board.get).toBeDefined();
             expect(typeof Flown.Board.get).toBe('function');
         });
 
-        it('should return the requested path', function() {
+        it('returns the requested path', function() {
             expect(board.get('green')).toEqual(path);
         });
 
