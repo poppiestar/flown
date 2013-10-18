@@ -5,9 +5,13 @@ Flown.Path = {
     // public methods
 
     create: function() {
+        return Object.create(this).init();
+    },
+
+    init: function() {
         this._path = [];
 
-        return Object.create(this);
+        return this;
     },
 
     get: function() {
