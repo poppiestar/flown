@@ -21,7 +21,7 @@ Flown.Board = {
     },
 
     getAll: function() {
-        return {};
+        return this._paths;
     }
 
 };

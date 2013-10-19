@@ -83,4 +83,27 @@ describe('Board', function() {
 
     });
 
+    describe('getting all paths from the board', function() {
+
+        var board,
+            path;
+
+        beforeEach(function() {
+            board = Flown.Board.create();
+            path = Flown.Path.create();
+            path.add(Flown.Square.create(5, 10));
+            board.add('green', path);
+        });
+
+        it('has a get all paths function', function() {
+            expect(board.getAll).toBeDefined();
+            expect(typeof Flown.Board.getAll).toBe('function');
+        });
+
+        it('returns the requested path', function() {
+            expect(board.getAll()).toEqual({'green': path});
+        });
+
+    });
+
 });
