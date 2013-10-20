@@ -14,9 +14,11 @@ describe('Board', function() {
         });
 
         it('creates a new Board object', function() {
-            var board = Flown.Board.create();
+            var size = 10,
+                board = Flown.Board.create(size);
 
             expect(board).toBeDefined();
+            expect(board.getSize()).toBe(size)
         });
 
     });
@@ -29,9 +31,9 @@ describe('Board', function() {
         });
 
         it('sets the initial values of the Board object', function() {
-            var board = Flown.Board.create();
+            var board = Flown.Board.create(10);
 
-            expect(board.getAll()).toEqual({});
+            expect(board.getAllPaths()).toEqual({});
         });
 
     });
@@ -41,21 +43,21 @@ describe('Board', function() {
         var board;
 
         beforeEach(function() {
-            board = Flown.Board.create();
+            board = Flown.Board.create(10);
         });
 
         it('has an add path function', function() {
-            expect(board.add).toBeDefined();
-            expect(typeof Flown.Board.add).toBe('function');
+            expect(board.addPath).toBeDefined();
+            expect(typeof Flown.Board.addPath).toBe('function');
         });
 
         it('adds a path to the board', function() {
             var path = Flown.Path.create();
 
             path.add(Flown.Square.create(5, 10));
-            board.add('green', path);
+            board.addPath('green', path);
 
-            expect(board.get('green')).toEqual(path);
+            expect(board.getPath('green')).toEqual(path);
         });
 
     });
@@ -66,19 +68,44 @@ describe('Board', function() {
             path;
 
         beforeEach(function() {
-            board = Flown.Board.create();
+            board = Flown.Board.create(10);
             path = Flown.Path.create();
             path.add(Flown.Square.create(5, 10));
-            board.add('green', path);
+            board.addPath('green', path);
         });
 
         it('has a get path function', function() {
-            expect(board.get).toBeDefined();
-            expect(typeof Flown.Board.get).toBe('function');
+            expect(board.getPath).toBeDefined();
+            expect(typeof Flown.Board.getPath).toBe('function');
         });
 
         it('returns the requested path', function() {
-            expect(board.get('green')).toEqual(path);
+            expect(board.getPath('green')).toEqual(path);
+        });
+
+    });
+
+    describe('getting a path at a specific square on the board', function() {
+
+        var board,
+            path,
+            square;
+
+        beforeEach(function() {
+            board = Flown.Board.create(10);
+            path = Flown.Path.create();
+            square = Flown.Square.create(5, 10);
+            path.add(square);
+            board.addPath('green', path);
+        });
+
+        it('has a get path at square function', function() {
+            expect(board.getPathAt).toBeDefined();
+            expect(typeof Flown.Board.getPathAt).toBe('function');
+        });
+
+        it('returns the requested path', function() {
+            expect(board.getPathAt(square)).toEqual(path);
         });
 
     });
@@ -89,19 +116,19 @@ describe('Board', function() {
             path;
 
         beforeEach(function() {
-            board = Flown.Board.create();
+            board = Flown.Board.create(10);
             path = Flown.Path.create();
             path.add(Flown.Square.create(5, 10));
-            board.add('green', path);
+            board.addPath('green', path);
         });
 
         it('has a get all paths function', function() {
-            expect(board.getAll).toBeDefined();
-            expect(typeof Flown.Board.getAll).toBe('function');
+            expect(board.getAllPaths).toBeDefined();
+            expect(typeof Flown.Board.getAllPaths).toBe('function');
         });
 
         it('returns the requested path', function() {
-            expect(board.getAll()).toEqual({'green': path});
+            expect(board.getAllPaths()).toEqual({'green': path});
         });
 
     });
