@@ -24,7 +24,9 @@ Flown.Board = {
     },
 
     getPathAt: function( square ) {
-        return this._paths[this._board[square.x][square.y].colour];
+        if( this._board[square.x][square.y] ) {
+            return this._paths[this._board[square.x][square.y].colour];
+        }
     },
 
     getAllPaths: function() {

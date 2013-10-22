@@ -33,6 +33,8 @@ describe('Board', function() {
         it('sets the initial values of the Board object', function() {
             var board = Flown.Board.create(10);
 
+            board.init(10);
+
             expect(board.getAllPaths()).toEqual({});
         });
 
@@ -104,8 +106,14 @@ describe('Board', function() {
             expect(typeof Flown.Board.getPathAt).toBe('function');
         });
 
-        it('returns the requested path', function() {
+        it('returns the requested path when given a path square', function() {
             expect(board.getPathAt(square)).toEqual(path);
+        });
+
+        it('returns nothing when given a non-path square', function() {
+            var nonSquare = Flown.Square.create(0, 0);
+
+            expect(board.getPathAt(nonSquare)).not.toBeDefined();
         });
 
     });
