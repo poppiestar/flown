@@ -28,7 +28,13 @@ describe('Game Manager', function() {
         var gameManager;
 
         beforeEach(function() {
+            Flown.DefaultLevels = exampleLevelPacks1;
+            window.localStorage.setItem('flown.extrapacks', JSON.stringify(exampleLevelPacks2));
             gameManager = Flown.GameManager.create();
+        });
+
+        afterEach(function() {
+            window.localStorage.clear('flown.extrapacks');
         });
 
         it('has an init function', function() {
@@ -37,10 +43,9 @@ describe('Game Manager', function() {
         });
 
         it('sets the initial values of the game manager object', function() {
-            var gameManager = Flown.GameManager.create();
-
             expect(gameManager._levelManager).toBeDefined();
             expect(gameManager._gameBoard).toBeDefined();
+            expect(gameManager._levelManager._packs.length).toBe(exampleLevelPacks1.length + exampleLevelPacks2.length);
         });
 
     });
