@@ -24,13 +24,17 @@ var exampleLevel2 = {
 };
 
 var exampleLevel3 = {
-    size: 5,
+    size: 6,
     points: {
-        "red": [
-            [0, 0],
-            [1, 4]
+        "cyan": [
+            [1, 1],
+            [2, 3]
         ],
-        "orange": [
+        "magenta": [
+            [3, 2],
+            [2, 3]
+        ],
+        "pink": [
             [4, 1],
             [3, 4]
         ]
@@ -53,5 +57,14 @@ var exampleLevelSet2 = {
     levels: [
         exampleLevel3,
         exampleLevel2
+    ]
+};
+
+var exampleLevelPack1 = {
+    name: 'Example Level Pack',
+    description: 'Impressive levels from the ends of the universe',
+    levelSets: [
+        exampleLevelSet1,
+        exampleLevelSet2
     ]
 };
