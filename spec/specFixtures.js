@@ -63,8 +63,16 @@ var exampleLevelSet2 = {
 var exampleLevelPack1 = {
     name: 'Example Level Pack',
     description: 'Impressive levels from the ends of the universe',
-    levelSets: [
+    sets: [
         exampleLevelSet1,
+        exampleLevelSet2
+    ]
+};
+
+var exampleLevelPack2 = {
+    name: 'Another example Level Pack',
+    description: 'An even more impressive set of levels from the ends of the universe',
+    sets: [
         exampleLevelSet2
     ]
 };
