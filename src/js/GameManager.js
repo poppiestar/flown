@@ -6,7 +6,7 @@ Flown.GameManager = {
         return Object.create(this).init();
     },
 
-    init: function( levelPacks ) {
+    init: function() {
         var levelPack;
 
         this._levelManager = Flown.LevelManager.create();
@@ -14,16 +14,26 @@ Flown.GameManager = {
 
         // load default level packs
         if( Flown.DefaultLevels ) {
-            for( levelPack in Flown.DefaultLevels ) {
-                this._levelManager.addLevelPack(Flown.DefaultLevels[levelPack]);
-            }
+            this._loadLevelPacks(Flown.DefaultLevels);
         }
 
+        // load any installed level packs
         if( window.localStorage ) {
-            console.log('going to check localStorage for extra level packs!');
+            var installedPacks = JSON.parse(window.localStorage.getItem('flown.extrapacks'));
+            this._loadLevelPacks(installedPacks);
         }
 
         return this;
+    },
+
+    // private methods
+
+    _loadLevelPacks: function( levelPacks ) {
+        var levelPack;
+
+        for( levelPack in levelPacks ) {
+            this._levelManager.addLevelPack(levelPacks[levelPack]);
+        }
     }
 
 };
