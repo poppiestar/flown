@@ -14,13 +14,13 @@ describe('Level', function() {
         });
 
         it('creates a new Level object', function() {
-            var level = Flown.Level.create(exampleLevel);
+            var level = Flown.Level.create(exampleLevel1);
 
             expect(level).toBeDefined();
 
             expect(level._points["red"]).toBeDefined();
             expect(level._points["orange"]).toBeDefined();
-            expect(level._size).toBe(exampleLevel.size);
+            expect(level._size).toBe(exampleLevel1.size);
         });
 
     });
@@ -33,24 +33,14 @@ describe('Level', function() {
         });        
 
         it('sets the initial values of the Level object', function() {
-            var level,
-                blueLevel;
+            var level;
 
-            blueLevel = {
-                size: 8,
-                points: {
-                    "blue": [
-                        [4, 1],
-                        [3, 4]
-                    ]
-                }
-            };
-            level = Flown.Level.create(exampleLevel);
+            level = Flown.Level.create(exampleLevel1);
 
-            level.init(blueLevel);
+            level.init(exampleLevel2);
 
             expect(level._points["blue"]).toBeDefined();
-            expect(level._size).toBe(blueLevel.size);
+            expect(level._size).toBe(exampleLevel2.size);
             expect(level._points["red"]).not.toBeDefined();
             expect(level._points["orange"]).not.toBeDefined();
         });
@@ -62,7 +52,7 @@ describe('Level', function() {
         var level;
 
         beforeEach(function() {
-            level = Flown.Level.create(exampleLevel);
+            level = Flown.Level.create(exampleLevel1);
         });
 
         it('has a get all points function', function() {
@@ -86,7 +76,7 @@ describe('Level', function() {
         var level;
 
         beforeEach(function() {
-            level = Flown.Level.create(exampleLevel);
+            level = Flown.Level.create(exampleLevel1);
         });
 
         it('has a get end square function', function() {

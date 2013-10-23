@@ -14,11 +14,12 @@ describe('Level Set', function() {
         });
 
         it('creates a new level set object', function() {
-            var levelSet = Flown.LevelSet.create(exampleLevelSet);
+            var levelSet = Flown.LevelSet.create(exampleLevelSet1);
 
             expect(levelSet).toBeDefined();
-            expect(levelSet._name).toBe(exampleLevelSet.name);
-            expect(levelSet._description).toBe(exampleLevelSet.description);
+            expect(levelSet._name).toBe(exampleLevelSet1.name);
+            expect(levelSet._description).toBe(exampleLevelSet1.description);
+            expect(levelSet._levels.length).toBe(3);
         });
 
     });
@@ -28,12 +29,6 @@ describe('Level Set', function() {
         it('has an initialisation function', function() {
             expect(Flown.LevelSet.init).toBeDefined();
             expect(typeof Flown.LevelSet.init).toBe('function');
-        });
-
-        it('sets the initial values of the level set object', function() {
-            var levelManager = Flown.LevelManager.create();
-
-            levelManager.init();
         });
 
     });
