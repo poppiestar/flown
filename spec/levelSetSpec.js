@@ -19,7 +19,7 @@ describe('Level Set', function() {
             expect(levelSet).toBeDefined();
             expect(levelSet._name).toBe(exampleLevelSet1.name);
             expect(levelSet._description).toBe(exampleLevelSet1.description);
-            expect(levelSet._levels.length).toBe(3);
+            expect(levelSet._levels.length).toBe(exampleLevelSet1.levels.length);
         });
 
     });
@@ -42,7 +42,7 @@ describe('Level Set', function() {
 
             expect(levelSet._name).toBe(exampleLevelSet2.name);
             expect(levelSet._description).toBe(exampleLevelSet2.description);
-            expect(levelSet._levels.length).toBe(2);
+            expect(levelSet._levels.length).toBe(exampleLevelSet2.levels.length);
         });
 
     });
