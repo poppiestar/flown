@@ -6,15 +6,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
-    jasmine : {
-      src : 'src/**/*.js',
-      options : {
-        specs : 'spec/**/*.js'
+    jasmine: {
+      src: 'src/**/*.js',
+      options: {
+        specs: 'spec/**/*Spec.js',
+        helpers: 'spec/**/*Fixtures.js'
       }
     },
     watch: {
       scripts: {
-        files: ['src/**/*.js', 'spec/**/*.js'],
+        files: ['src/**/*.js', 'spec/**/*Spec.js'],
           tasks: ['jshint', 'jasmine'],
           options: {
             spawn: false,
@@ -30,7 +31,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jshint', 'jasmine']);
+  grunt.registerTask('test', ['jshint', 'jasmine']);
+  grunt.registerTask('default', 'test');
 
 };
 
