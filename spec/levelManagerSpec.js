@@ -88,10 +88,3 @@ describe('Level Manager', function() {
     });
 
 });
-
-
-/* 
-loadLevelPacks
-
-addLevelPack
-*/
