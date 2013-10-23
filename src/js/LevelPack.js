@@ -18,6 +18,10 @@ Flown.LevelPack = {
         }
 
         return this;
+    },
+
+    getLevelSet: function( levelSet ) {
+        return this._sets[levelSet-1];
     }
 
 };

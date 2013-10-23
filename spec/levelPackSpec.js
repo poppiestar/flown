@@ -47,4 +47,26 @@ describe('Level Pack', function() {
 
     });
 
+    describe('getting a level set object from the level pack', function() {
+
+        var levelPack;
+
+        beforeEach(function() {
+            levelPack = Flown.LevelPack.create(exampleLevelPack1);
+        });
+
+        it('has a getLevelSet function', function() {
+            expect(levelPack.getLevelSet).toBeDefined();
+            expect(typeof levelPack.getLevelSet).toBe('function');
+        });
+
+        it('returns a level set object', function() {
+            var levelSet = levelPack.getLevelSet(1);
+
+            expect(levelSet._name).toBe(exampleLevelSet1.name);
+            expect(levelSet._description).toBe(exampleLevelSet1.description);
+            expect(levelSet._levels.length).toBe(exampleLevelSet1.levels.length);
+        });
+
+    });
 });
