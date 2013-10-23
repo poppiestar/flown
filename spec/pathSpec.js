@@ -17,6 +17,7 @@ describe('Path', function() {
             var path = Flown.Path.create();
 
             expect(path).toBeDefined();
+            expect(path._path).toEqual({});
         });
 
     });
@@ -31,6 +32,7 @@ describe('Path', function() {
         it('sets the initial values of the Path object', function() {
             var path = Flown.Path.create();
 
+            path.add(Flown.Square.create(0,0));
             path.init();
 
             expect(path.get()).toEqual([]);

@@ -14,11 +14,12 @@ describe('Board', function() {
         });
 
         it('creates a new Board object', function() {
-            var size = 10,
-                board = Flown.Board.create(size);
+            var testSize = 10,
+                board = Flown.Board.create(testSize);
 
             expect(board).toBeDefined();
-            expect(board.getSize()).toBe(size)
+            expect(board._paths).toEqual({});
+            expect(board._size).toBe(testSize);
         });
 
     });
@@ -31,11 +32,15 @@ describe('Board', function() {
         });
 
         it('sets the initial values of the Board object', function() {
-            var board = Flown.Board.create(10);
+            var testSize = 8,
+                board;
 
-            board.init(10);
+            board = Flown.Board.create(10);
 
-            expect(board.getAllPaths()).toEqual({});
+            board.init(testSize);
+
+            expect(board._paths).toEqual({});
+            expect(board._size).toBe(testSize);
         });
 
     });
