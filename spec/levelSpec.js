@@ -1,18 +1,6 @@
 
 describe('Level', function() {
 
-    var exampleLevel = {
-        "red": [
-            [0, 0],
-            [1, 4]
-        ],
-        "orange": [
-            [4, 1],
-            [3, 4]
-        ]
-    },
-    exampleLevelSize = 5;
-
     it('is an object', function() {
         expect(Flown.Level).toBeDefined();
         expect(typeof Flown.Level).toBe('object');
@@ -26,13 +14,13 @@ describe('Level', function() {
         });
 
         it('creates a new Level object', function() {
-            var level = Flown.Level.create(exampleLevelSize, exampleLevel);
+            var level = Flown.Level.create(exampleLevel);
 
             expect(level).toBeDefined();
 
             expect(level._points["red"]).toBeDefined();
             expect(level._points["orange"]).toBeDefined();
-            expect(level._size).toBe(exampleLevelSize);
+            expect(level._size).toBe(exampleLevel.size);
         });
 
     });
@@ -46,22 +34,23 @@ describe('Level', function() {
 
         it('sets the initial values of the Level object', function() {
             var level,
-                blueLevel,
-                blueLevelSize;
+                blueLevel;
 
             blueLevel = {
-                "blue": [
-                    [4, 1],
-                    [3, 4]
-                ]
+                size: 8,
+                points: {
+                    "blue": [
+                        [4, 1],
+                        [3, 4]
+                    ]
+                }
             };
-            blueLevelSize = 10;
-            level = Flown.Level.create(exampleLevelSize, exampleLevel);
+            level = Flown.Level.create(exampleLevel);
 
-            level.init(blueLevelSize, blueLevel);
+            level.init(blueLevel);
 
             expect(level._points["blue"]).toBeDefined();
-            expect(level._size).toBe(blueLevelSize);
+            expect(level._size).toBe(blueLevel.size);
             expect(level._points["red"]).not.toBeDefined();
             expect(level._points["orange"]).not.toBeDefined();
         });
@@ -73,7 +62,7 @@ describe('Level', function() {
         var level;
 
         beforeEach(function() {
-            level = Flown.Level.create(exampleLevelSize, exampleLevel);
+            level = Flown.Level.create(exampleLevel);
         });
 
         it('has a get all points function', function() {
@@ -97,7 +86,7 @@ describe('Level', function() {
         var level;
 
         beforeEach(function() {
-            level = Flown.Level.create(exampleLevelSize, exampleLevel);
+            level = Flown.Level.create(exampleLevel);
         });
 
         it('has a get end square function', function() {

@@ -2,20 +2,20 @@ var Flown = this.Flown || {};
 
 Flown.Level = {
 
-    create: function( size, points ) {
-        return Object.create(this).init(size, points);
+    create: function( levelData ) {
+        return Object.create(this).init(levelData);
     },
     
-    init: function( size, points ) {
+    init: function( levelData ) {
         var pointPair;
 
-        this._size = size;
+        this._size = levelData.size;
         this._points = {};
 
-        for( pointPair in points ) {
+        for( pointPair in levelData.points ) {
             this._points[pointPair] = [
-                Flown.Square.create(points[pointPair][0][0], points[pointPair][0][1]),
-                Flown.Square.create(points[pointPair][1][0], points[pointPair][1][1])
+                Flown.Square.create(levelData.points[pointPair][0][0], levelData.points[pointPair][0][1]),
+                Flown.Square.create(levelData.points[pointPair][1][0], levelData.points[pointPair][1][1])
             ];
         }
 
