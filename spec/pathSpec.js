@@ -3,7 +3,7 @@ describe('Path', function() {
 
     it('is an object', function() {
         expect(Flown.Path).toBeDefined();
-        expect(typeof Flown.Path).toBe('object')
+        expect(typeof Flown.Path).toBe('object');
     });
 
     describe('creating a path', function() {

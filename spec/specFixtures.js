@@ -46,3 +46,12 @@ var exampleLevelSet1 = {
         exampleLevel3
     ]
 };
+
+var exampleLevelSet2 = {
+    name: 'Another testing Level Set',
+    description: 'Levels not just to be played, but enjoyed',
+    levels: [
+        exampleLevel3,
+        exampleLevel2
+    ]
+};

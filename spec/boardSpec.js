@@ -3,7 +3,7 @@ describe('Board', function() {
 
     it('is an object', function() {
         expect(Flown.Board).toBeDefined();
-        expect(typeof Flown.Board).toBe('object')
+        expect(typeof Flown.Board).toBe('object');
     });
 
     describe('creating a board', function() {
