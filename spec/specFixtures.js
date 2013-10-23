@@ -14,5 +14,9 @@ var exampleLevel = {
 };
 
 var exampleLevelSet = {
-
+    name: 'Example Level Set',
+    description: 'A set of levels to be played',
+    levels: [
+        exampleLevel
+    ]
 };
