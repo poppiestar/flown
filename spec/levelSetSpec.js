@@ -45,6 +45,49 @@ describe('Level Set', function() {
             expect(levelSet._levels.length).toBe(2);
         });
 
+    });
+
+    describe('getting a level object from the level set', function() {
+
+        var levelSet;
+
+        beforeEach(function() {
+            levelSet = Flown.LevelSet.create(exampleLevelSet1);
+        });
+
+        it('has a getLevel function', function() {
+            expect(levelSet.getLevel).toBeDefined();
+            expect(typeof levelSet.getLevel).toBe('function');
+        });
+
+        it('returns a level object', function() {
+            var level = levelSet.getLevel(1);
+
+            expect(level._points["red"]).toBeDefined();
+            expect(level._points["orange"]).toBeDefined();
+            expect(level._size).toBe(exampleLevel1.size);
+        });
+
+    });
+
+    describe('getting the number of levels in level set', function() {
+
+        var levelSet;
+
+        beforeEach(function() {
+            levelSet = Flown.LevelSet.create(exampleLevelSet1);
+        });
+
+        it('has a getSize function', function() {
+            expect(levelSet.getSize).toBeDefined();
+            expect(typeof levelSet.getSize).toBe('function');
+        });
+
+        it('returns the number of levels in the set', function() {
+            var levelSize = levelSet.getSize();
+
+            expect(levelSize).toBe(exampleLevelSet1.levels.length);
+        });
 
     });
 

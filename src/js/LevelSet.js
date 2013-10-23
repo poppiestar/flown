@@ -18,6 +18,14 @@ Flown.LevelSet = {
         }
 
         return this;
+    },
+
+    getLevel: function( level ) {
+        return this._levels[level-1];
+    },
+
+    getSize: function() {
+        return this._levels.length;
     }
 
 };
