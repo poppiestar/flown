@@ -76,3 +76,15 @@ var exampleLevelPack2 = {
         exampleLevelSet2
     ]
 };
+
+var exampleLevelPacks1 = [
+    exampleLevelPack1,
+    exampleLevelPack2
+];
+
+var exampleLevelPacks2 = [
+    exampleLevelPack1,
+    exampleLevelPack2,
+    exampleLevelPack1,
+    exampleLevelPack2
+];
