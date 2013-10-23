@@ -20,7 +20,9 @@ Flown.GameManager = {
         // load any installed level packs
         if( window.localStorage ) {
             var installedPacks = JSON.parse(window.localStorage.getItem('flown.extrapacks'));
-            this._loadLevelPacks(installedPacks);
+            if( installedPacks ) {
+                this._loadLevelPacks(installedPacks);
+            }
         }
 
         return this;
