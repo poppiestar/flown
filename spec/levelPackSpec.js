@@ -69,4 +69,47 @@ describe('Level Pack', function() {
         });
 
     });
+
+    describe('getting the number of level sets in level pack', function() {
+
+        var levelPack;
+
+        beforeEach(function() {
+            levelPack = Flown.LevelPack.create(exampleLevelPack1);
+        });
+
+        it('has a set number function', function() {
+            expect(levelPack.getSetsLength).toBeDefined();
+            expect(typeof levelPack.getSetsLength).toBe('function');
+        });
+
+        it('returns the number of sets in the pack', function() {
+            var levelSets = levelPack.getSetsLength();
+
+            expect(levelSets).toBe(exampleLevelPack1.sets.length);
+        });
+
+    });
+
+    describe('getting the number of levels in a level pack', function() {
+
+        var levelPack;
+
+        beforeEach(function() {
+            levelPack = Flown.LevelPack.create(exampleLevelPack1);
+        });
+
+        it('has a get level number function', function() {
+            expect(levelPack.getLevelsLength).toBeDefined();
+            expect(typeof levelPack.getLevelsLength).toBe('function');
+        });
+
+        it('returns the number of levels in the pack', function() {
+            var levels = levelPack.getLevelsLength();
+
+            expect(levels).toBe(5);
+        });
+
+    });
+
 });
