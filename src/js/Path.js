@@ -19,12 +19,7 @@ Flown.Path = {
     },
 
     add: function( square ) {
-        var existingIndex = this.indexOf(square);
-
-        if( existingIndex >= 0 ) {
-            this._path.length = existingIndex;
-        }
-
+        this.truncateAt(square);
         this._path.push(square);
     },
 
@@ -38,6 +33,14 @@ Flown.Path = {
         }
 
         return -1;
+    },
+
+    truncateAt: function( square ) {
+        var existingIndex = this.indexOf(square);
+
+        if( existingIndex >= 0 ) {
+            this._path.length = existingIndex;
+        }
     }
 
 };

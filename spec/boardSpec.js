@@ -59,12 +59,15 @@ describe('Board', function() {
         });
 
         it('adds a path to the board', function() {
-            var path = Flown.Path.create();
+            var path = Flown.Path.create(),
+                square = Flown.Square.create(5, 10);
 
-            path.add(Flown.Square.create(5, 10));
+            path.add(square);
             board.addPath('green', path);
 
             expect(board.getPath('green')).toEqual(path);
+            expect(board.getPathAt(square)).toEqual(path);
+            expect(board._board[square.x - 1][square.y - 1]).toEqual({colour: 'green'});
         });
 
     });
@@ -116,7 +119,7 @@ describe('Board', function() {
         });
 
         it('returns nothing when given a non-path square', function() {
-            var nonSquare = Flown.Square.create(0, 0);
+            var nonSquare = Flown.Square.create(1, 1);
 
             expect(board.getPathAt(nonSquare)).not.toBeDefined();
         });
@@ -142,6 +145,45 @@ describe('Board', function() {
 
         it('returns the requested path', function() {
             expect(board.getAllPaths()).toEqual({'green': path});
+        });
+
+    });
+
+    describe('truncating crossed paths', function() {
+
+        var board;
+
+        beforeEach(function() {
+            board = Flown.Board.create(5);
+        });
+
+        it('truncates an existing path if a new path cuts through it', function() {
+            var pathGreen = Flown.Path.create();
+            var pathRed = Flown.Path.create();
+            var expectedGreenPath = Flown.Path.create();
+
+            var crossingSquare = Flown.Square.create(3, 3);
+
+            expectedGreenPath.add(Flown.Square.create(1, 3));
+            expectedGreenPath.add(Flown.Square.create(2, 3));
+
+            pathGreen.add(Flown.Square.create(1, 3));
+            pathGreen.add(Flown.Square.create(2, 3));
+            pathGreen.add(crossingSquare);
+            pathGreen.add(Flown.Square.create(4, 3));
+            pathGreen.add(Flown.Square.create(5, 3));
+            board.addPath('green', pathGreen);
+
+            pathRed.add(Flown.Square.create(3, 1));
+            pathRed.add(Flown.Square.create(3, 2));
+            pathRed.add(crossingSquare);
+            pathRed.add(Flown.Square.create(3, 4));
+            pathRed.add(Flown.Square.create(3, 5));
+            board.addPath('red', pathRed);
+
+            expect(board.getPathAt(crossingSquare)).toEqual(pathRed);
+            expect(board.getPathAt(Flown.Square.create(1, 3))).toEqual(expectedGreenPath);
+            expect(board._board[4-1][3-1]).not.toBeDefined();
         });
 
     });

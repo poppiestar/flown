@@ -79,8 +79,7 @@ describe('Path', function() {
         });
 
         it('truncates a path if the same square is added twice', function() {
-            var duplicateSquare = Flown.Square.create(0, 2),
-                expectedPath;
+            var duplicateSquare = Flown.Square.create(0, 2);
 
             path.add(Flown.Square.create(0,0));
             path.add(Flown.Square.create(0,1));
@@ -116,6 +115,37 @@ describe('Path', function() {
 
         it('returns -1 if the square is not in the path', function() {
             expect(path.indexOf(square)).toEqual(-1);
+        });
+
+    });
+
+    describe('truncating a path at a square', function() {
+
+        var path,
+            square;
+
+        beforeEach(function() {
+            path = Flown.Path.create();
+            square = Flown.Square.create(5, 10);
+        });
+
+        it('has a truncate path function', function() {
+            expect(path.truncateAt).toBeDefined();
+            expect(typeof path.truncateAt).toBe('function');
+        });
+
+        it('truncates a path at square', function() {
+            var truncateSquare = Flown.Square.create(0, 2);
+
+            path.add(Flown.Square.create(0,0));
+            path.add(Flown.Square.create(0,1));
+            path.add(truncateSquare);
+            path.add(Flown.Square.create(0,3));
+            path.add(Flown.Square.create(0,4));
+
+            path.truncateAt(truncateSquare);
+
+            expect(path.get()).toEqual([Flown.Square.create(0,0), Flown.Square.create(0,1)]);
         });
 
     });

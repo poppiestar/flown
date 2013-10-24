@@ -15,8 +15,12 @@ Flown.Board = {
     },
 
     addPath: function( name, path ) {
+        var square;
+
+        delete this._paths[name];
+        this._updatePaths(path.get());
         this._paths[name] = path;
-        this._addPathToBoard(name, path.get());
+        this._updateBoard();
     },
 
     getPath: function( name ) {
@@ -24,8 +28,8 @@ Flown.Board = {
     },
 
     getPathAt: function( square ) {
-        if( this._board[square.x][square.y] ) {
-            return this._paths[this._board[square.x][square.y].colour];
+        if( this._board[square.x - 1][square.y - 1] ) {
+            return this.getPath(this._board[square.x - 1][square.y - 1].colour);
         }
     },
 
@@ -52,14 +56,49 @@ Flown.Board = {
         return board;
     },
 
+    _updateBoard: function() {
+        var path;
+
+        this._board = this._initBoard(this._size);
+
+        for( path in this._paths ) {
+            this._addPathToBoard( path, this._paths[path].get() );
+        }
+    },
+
     _addPathToBoard: function( name, path ) {
         var square;
 
         for( square in path ) {
-            this._board[path[square].x][path[square].y] = {
+            this._board[path[square].x - 1][path[square].y - 1] = {
                 colour: name
             };
         }
+    },
+
+    _updatePaths: function( newPath ) {
+        var allPaths = this.getAllPaths(),
+            currentPath,
+            currentSquare,
+            path,
+            square;
+
+        // loop through each square in the new path and see if it exists in any other path
+        for( square in newPath ) {
+            currentSquare = newPath[square];
+
+            // loop through existing paths
+            for( path in allPaths ) {
+                currentPath = allPaths[path];
+
+                if( currentPath.indexOf(currentSquare) ) {
+                    // found a path with a crossing square
+                    currentPath.truncateAt(currentSquare);
+                }
+            }
+
+        }
+
     }
 
 };
