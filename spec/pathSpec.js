@@ -93,4 +93,31 @@ describe('Path', function() {
 
     });
 
+    describe('finding the index of a square in the path', function() {
+
+        var path,
+            square;
+
+        beforeEach(function() {
+            path = Flown.Path.create();
+            square = Flown.Square.create(5, 10);
+        });
+
+        it('has a function to find the index of a square in the path', function() {
+            expect(path.indexOf).toBeDefined();
+            expect(typeof path.indexOf).toBe('function');
+        });
+
+        it('returns the index in the path where the square exists', function() {
+            path.add(square);
+
+            expect(path.indexOf(square)).toEqual(0);
+        });
+
+        it('returns -1 if the square is not in the path', function() {
+            expect(path.indexOf(square)).toEqual(-1);
+        });
+
+    });
+
 });

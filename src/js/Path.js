@@ -19,7 +19,7 @@ Flown.Path = {
     },
 
     add: function( square ) {
-        var existingIndex = this._indexOf(square);
+        var existingIndex = this.indexOf(square);
 
         if( existingIndex >= 0 ) {
             this._path.length = existingIndex;
@@ -28,14 +28,12 @@ Flown.Path = {
         this._path.push(square);
     },
 
-    // private methods
-
-    _indexOf: function( square ) {
+    indexOf: function( square ) {
         var pathSquare;
 
         for( pathSquare in this._path ) {
             if( square.equals( this._path[pathSquare]) ) {
-                return pathSquare;
+                return parseInt(pathSquare, 10);
             }
         }
 
