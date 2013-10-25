@@ -149,6 +149,25 @@ describe('Board', function() {
 
     });
 
+    describe('getting the number of square on the board', function() {
+
+        var board;
+
+        beforeEach(function() {
+            board = Flown.Board.create(10);
+        });
+
+        it('has a function that returns the number of squares on the board', function() {
+            expect(board.getSquares).toBeDefined();
+            expect(typeof board.getSquares).toBe('function');
+        });
+
+        it('returns the number of squares on the board', function() {
+            expect(board.getSquares()).toBe(100);
+        });
+
+    });
+
     describe('truncating crossed paths', function() {
 
         var board;

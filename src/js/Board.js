@@ -41,6 +41,10 @@ Flown.Board = {
         return this._size;
     },
 
+    getSquares: function() {
+        return this._size * this._size;
+    },
+
     // private methods
 
     _initBoard: function( size ) {
