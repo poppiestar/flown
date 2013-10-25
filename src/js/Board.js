@@ -45,6 +45,20 @@ Flown.Board = {
         return this._size * this._size;
     },
 
+    getFilledSquares: function() {
+        var squares,
+            path;
+
+        squares = 0;
+
+        for( path in this._paths ) {
+            var currentPath = this._paths[path];
+            squares += this._paths[path].getLength();
+        }
+
+        return squares;
+    },
+
     // private methods
 
     _initBoard: function( size ) {

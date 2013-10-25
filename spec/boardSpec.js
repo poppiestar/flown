@@ -168,6 +168,37 @@ describe('Board', function() {
 
     });
 
+    describe('getting the number of filled square on the board', function() {
+
+        var board;
+
+        beforeEach(function() {
+            board = Flown.Board.create(10);
+        });
+
+        it('has a function that returns the number of filled squares on the board', function() {
+            expect(board.getFilledSquares).toBeDefined();
+            expect(typeof board.getFilledSquares).toBe('function');
+        });
+
+        it('returns the number of filled squares on an empty board', function() {
+            expect(board.getFilledSquares()).toBe(0);
+        });
+
+        it('returns the number of filled squares on a partially filled board', function() {
+            var path = Flown.Path.create();
+
+            path.add(Flown.Square.create(1,1));
+            path.add(Flown.Square.create(1,2));
+            path.add(Flown.Square.create(1,3));
+
+            board.addPath('green', path);
+
+            expect(board.getFilledSquares()).toBe(3);
+        });
+
+    });
+
     describe('truncating crossed paths', function() {
 
         var board;
