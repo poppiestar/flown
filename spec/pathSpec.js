@@ -94,6 +94,26 @@ describe('Path', function() {
 
     describe('finding the index of a square in the path', function() {
 
+        var path;
+
+        beforeEach(function() {
+            path = Flown.Path.create();
+            path.add(Flown.Square.create(5, 10));
+        });
+
+        it('has a function that returns the length of the path', function() {
+            expect(path.getLength).toBeDefined();
+            expect(typeof path.getLength).toBe('function');
+        });
+
+        it('returns the length of the path', function() {
+            expect(path.getLength()).toBe(1);
+        });
+
+    });
+
+    describe('finding the index of a square in the path', function() {
+
         var path,
             square;
 

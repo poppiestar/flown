@@ -23,6 +23,10 @@ Flown.Path = {
         this._path.push(square);
     },
 
+    getLength: function() {
+        return this._path.length;
+    },
+
     indexOf: function( square ) {
         var pathSquare;
 
