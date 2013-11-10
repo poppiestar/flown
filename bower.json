@@ -1,0 +1,28 @@
+{
+  "name": "flown",
+  "version": "0.0.0",
+  "homepage": "https://github.com/poppiestar/flown",
+  "authors": [
+    "Drew Miller <drew@onpatrol.co>"
+  ],
+  "description": "A browser-based puzzle game.",
+  "main": "index.html",
+  "keywords": [
+    "browser",
+    "game",
+    "puzzle"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "backbone": "~1.1.0"
+  }
+}
