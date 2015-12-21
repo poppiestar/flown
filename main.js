@@ -34,9 +34,11 @@ const pathCtx = pathCanvas.getContext('2d');
 markerCtx.globalAlpha = pathCtx.globalAlpha = 0.5;
 
 // add them to the DOM
-document.getElementById('gameArea').appendChild(gridCanvas);
-document.getElementById('gameArea').appendChild(markerCanvas);
-document.getElementById('gameArea').appendChild(pathCanvas);
+const gameArea = document.getElementById('gameArea');
+
+gameArea.appendChild(gridCanvas);
+gameArea.appendChild(markerCanvas);
+gameArea.appendChild(pathCanvas);
 
 // draw the game grid
 drawGrid(gridCtx, gridSize);
@@ -57,21 +59,21 @@ function gameCanvas (name, size) {
 }
 
 function drawFrame () {
-    const { path, marker } = store.getState();
+    const { board, marker } = store.getState();
 
     markerCtx.clearRect(0, 0, markerCtx.canvas.width, markerCtx.canvas.height);
     pathCtx.clearRect(0, 0, pathCtx.canvas.width, pathCtx.canvas.height);
 
-    if (!isEqual({}, path)) {
-        console.log(path);
+    if (board.active) {
         drawMarker(markerCtx, marker);
         showCoords();
     }
 }
 
-function startPath (event) {
+function startPath () {
     console.log('Path started');
-	store.dispatch({ type: 'PATH_START', colour: 'red', x: event.clientX, y: event.clientY });
+    store.dispatch({ type: 'MARKER_UPDATE', x: event.clientX, y: event.clientY, gridX: Math.floor(event.clientX / squareSize), gridY: Math.floor(event.clientY / squareSize) });
+	store.dispatch({ type: 'PATH_START' });
     window.requestAnimationFrame(drawFrame);
 }
 
@@ -82,23 +84,18 @@ function endPath () {
 }
 
 function canvasMove (event) {
-    const { path } = store.getState();
+    const { board } = store.getState();
 
-    store.dispatch({ type: 'MARKER_UPDATE', x: event.clientX, y: event.clientY });
-
-    if (!isEqual({}, path)) {
-        window.requestAnimationFrame(drawFrame);
-    }
+    store.dispatch({ type: 'MARKER_UPDATE', x: event.clientX, y: event.clientY, gridX: Math.floor(event.clientX / squareSize), gridY: Math.floor(event.clientY / squareSize) });
+    window.requestAnimationFrame(drawFrame);
 }
 
 function showCoords () {
-    const { path, marker } = store.getState();
-    const gridX = Math.floor(marker.x / squareSize);
-    const gridY = Math.floor(marker.y / squareSize);
+    const { board, marker } = store.getState();
 
-    if (!isEqual({}, path)) {
+    if (board.active) {
         console.log(marker.x, marker.y);
-        console.log(gridX, gridY);
+        console.log(marker.gridX, marker.gridY);
     }
 }
 
